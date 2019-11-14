@@ -8,7 +8,7 @@ package jp.ac.uryukyu.ie.e195755;
  *  boolean dead; //敵の生死状態。true=死亡。
  * Created by tnal on 2016/11/13.
  */
-public class Enemy {
+public class Enemy extends LivingThing {
     String name;
     int hitPoint;
     int attack;
@@ -21,6 +21,7 @@ public class Enemy {
      * @param attack モンスターの攻撃力
      */
     public Enemy (String name, int maximumHP, int attack) {
+        super(name, maximumHP, attack);
         this.name = name;
         hitPoint = maximumHP;
         this.attack = attack;
@@ -58,6 +59,7 @@ public class Enemy {
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
      * @param damage 受けたダメージ
      */
+    @Override
     public void wounded(int damage){
         hitPoint -= damage;
         if( hitPoint < 0 ) {
