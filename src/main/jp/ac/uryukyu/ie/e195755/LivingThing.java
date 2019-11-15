@@ -13,11 +13,7 @@ public class LivingThing {
         this.dead = false;
     }
     public boolean isDead(){
-        return true;
-    }
-
-    public String getName(){
-        return this.name;
+        return this.dead;
     }
 
     public void attack(LivingThing opponent){
@@ -32,5 +28,7 @@ public class LivingThing {
         System.out.printf("%sは倒れた\n",this.name);
     }
 
-
+    public String getName(){
+        return this.name;
+    }
 }
