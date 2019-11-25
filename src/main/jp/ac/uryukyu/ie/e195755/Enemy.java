@@ -25,11 +25,11 @@ public class Enemy extends LivingThing {
      * @return boolean
      */
     public boolean isDead() {
-        return dead;
+        return super.getDead();
     }
 
     public String getName(){
-        return name;
+        return super.getName();
     }
 
     /**
@@ -38,9 +38,9 @@ public class Enemy extends LivingThing {
      * @param hero 攻撃対象
      */
     public void attack(Hero hero){
-        if (!this.dead) {
-            int damage = (int)(Math.random() * attack);
-            System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", name, hero.getName(), damage);
+        if (!super.getDead()) {
+            int damage = (int)(Math.random() * getAttack());
+            System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", super.getName(), hero.getName(), damage);
             hero.wounded(damage);
         }
     }
@@ -52,10 +52,11 @@ public class Enemy extends LivingThing {
      */
     @Override
     public void wounded(int damage){
-        hitPoint -= damage;
-        if( hitPoint < 0 ) {
-            dead = true;
-            System.out.printf("モンスター%sは倒れた。\n", name);
+        int hitPoint = super.getHitPoint();
+        super.setHitPoint( hitPoint -= damage);
+        if( super.getHitPoint() < 0 ) {
+            super.setDead(true);
+            System.out.printf("モンスター%sは倒れた。\n", getName());
         }
     }
 
